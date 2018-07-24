@@ -1,0 +1,50 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Table">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="id_producto" type="xs:string" minOccurs="0" />
+                <xs:element name="descripcion" type="xs:string" minOccurs="0" />
+                <xs:element name="marca" type="xs:string" minOccurs="0" />
+                <xs:element name="costo" type="xs:float" minOccurs="0" />
+                <xs:element name="ruc_provedores" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <Table>
+    <id_producto>0786543</id_producto>
+    <descripcion>BLOQUEO CENTRAL</descripcion>
+    <marca>KIA</marca>
+    <costo>13</costo>
+    <ruc_provedores>1717480378001</ruc_provedores>
+  </Table>
+  <Table>
+    <id_producto>0897645</id_producto>
+    <descripcion>ALARMA</descripcion>
+    <marca>ADT</marca>
+    <costo>24</costo>
+    <ruc_provedores>0990271712001</ruc_provedores>
+  </Table>
+  <Table>
+    <id_producto>1435446</id_producto>
+    <descripcion>LUCES XENON</descripcion>
+    <marca>MIRCOM</marca>
+    <costo>35</costo>
+    <ruc_provedores>1180321351900</ruc_provedores>
+  </Table>
+  <Table>
+    <id_producto>5646535</id_producto>
+    <descripcion>FOCOS GUIAS BLANCOS</descripcion>
+    <marca>SIMPLEX</marca>
+    <costo>3</costo>
+    <ruc_provedores>0990271712001</ruc_provedores>
+  </Table>
+</NewDataSet>

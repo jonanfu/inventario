@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.8.1
+- https://www.phpmyadmin.net
+-
+- Servidor: 127.0.0.1
+- Tiempo de generación: 16-07-2018 a las 18:20:17
+- Versión del servidor: 10.1.33-MariaDB
+- Versión de PHP: 7.2.6
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="inventario" collation="utf8_general_ci" charset="utf8">
+            <pma:table name="clientes">
+                CREATE TABLE `clientes` (
+                  `cedula` varchar(10) NOT NULL,
+                  `nombre` varchar(20) NOT NULL,
+                  `apellido` varchar(20) NOT NULL,
+                  `direccion` varchar(30) NOT NULL,
+                  `ciudad` varchar(10) NOT NULL,
+                  PRIMARY KEY (`cedula`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="compras">
+                CREATE TABLE `compras` (
+                  `Id_producto` int(5) NOT NULL,
+                  `cantidad` int(3) NOT NULL,
+                  `subtotal` float NOT NULL,
+                  `iva` float NOT NULL,
+                  `total` float NOT NULL,
+                  `Id_compras` int(5) NOT NULL,
+                  `fecha` datetime NOT NULL,
+                  PRIMARY KEY (`Id_compras`),
+                  KEY `Id_producto` (`Id_producto`),
+                  CONSTRAINT `compras_ibfk_2` FOREIGN KEY (`Id_producto`) REFERENCES `productos` (`Id_producto`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="correos">
+                CREATE TABLE `correos` (
+                  `ruc` varchar(13) NOT NULL,
+                  `correo` int(30) NOT NULL,
+                  KEY `ruc` (`ruc`),
+                  CONSTRAINT `correos_ibfk_1` FOREIGN KEY (`ruc`) REFERENCES `provedores` (`RUC_Provedores`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="factura_cabezera">
+                CREATE TABLE `factura_cabezera` (
+                  `nro_factura` int(5) NOT NULL,
+                  `cedula` varchar(10) NOT NULL,
+                  `nombre` varchar(20) NOT NULL,
+                  `direccion` varchar(30) NOT NULL,
+                  `telefono` varchar(10) NOT NULL,
+                  `subtotal` float NOT NULL,
+                  `iva` float NOT NULL,
+                  `descuento` int(2) NOT NULL,
+                  `total` float NOT NULL,
+                  `fecha` date NOT NULL,
+                  PRIMARY KEY (`nro_factura`),
+                  KEY `cedula` (`cedula`),
+                  CONSTRAINT `factura_cabezera_ibfk_1` FOREIGN KEY (`cedula`) REFERENCES `clientes` (`cedula`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="factura_detalle">
+                CREATE TABLE `factura_detalle` (
+                  `nro_factura` int(5) NOT NULL,
+                  `Id_productos` int(5) NOT NULL,
+                  `precio` float NOT NULL,
+                  `cantidad` int(3) NOT NULL,
+                  `subtotal` float NOT NULL,
+                  KEY `Nro_factura` (`nro_factura`),
+                  KEY `Id_productos` (`Id_productos`),
+                  CONSTRAINT `factura_detalle_ibfk_1` FOREIGN KEY (`Id_productos`) REFERENCES `productos` (`Id_producto`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="kardex">
+                CREATE TABLE `kardex` (
+                  `Id_productos` int(5) NOT NULL,
+                  `fecha` date NOT NULL,
+                  `detalle` varchar(20) NOT NULL,
+                  `ingreso` int(3) NOT NULL,
+                  `egresos` int(3) NOT NULL,
+                  `saldo` int(3) NOT NULL,
+                  `costo` float NOT NULL,
+                  `precio` float NOT NULL,
+                  `Id_compras` int(5) NOT NULL,
+                  `nro_factura` int(5) NOT NULL,
+                  KEY `Id_productos` (`Id_productos`),
+                  KEY `Id_compras` (`Id_compras`),
+                  KEY `Nro_factura` (`nro_factura`),
+                  CONSTRAINT `kardex_ibfk_2` FOREIGN KEY (`Id_compras`) REFERENCES `compras` (`Id_compras`),
+                  CONSTRAINT `kardex_ibfk_3` FOREIGN KEY (`Nro_factura`) REFERENCES `factura_cabezera` (`Nro_factura`),
+                  CONSTRAINT `kardex_ibfk_4` FOREIGN KEY (`Id_productos`) REFERENCES `productos` (`Id_producto`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="productos">
+                CREATE TABLE `productos` (
+                  `Id_producto` int(5) NOT NULL,
+                  `descripcion` varchar(30) NOT NULL,
+                  `marca` varchar(15) NOT NULL,
+                  `costo` float NOT NULL,
+                  `ruc_provedores` varchar(13) NOT NULL,
+                  PRIMARY KEY (`Id_producto`),
+                  KEY `RUC_Provedores` (`ruc_provedores`),
+                  CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`RUC_Provedores`) REFERENCES `provedores` (`RUC_Provedores`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="provedores">
+                CREATE TABLE `provedores` (
+                  `ruc_provedores` varchar(13) NOT NULL,
+                  `nombres` varchar(20) NOT NULL,
+                  `ciudad` varchar(20) NOT NULL,
+                  `telefono` varchar(10) NOT NULL,
+                  `direccion` varchar(50) NOT NULL,
+                  PRIMARY KEY (`ruc_provedores`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="telefonos">
+                CREATE TABLE `telefonos` (
+                  `ruc` varchar(13) NOT NULL,
+                  `telefono` varchar(10) NOT NULL,
+                  `detalle` varchar(30) NOT NULL,
+                  KEY `ruc` (`ruc`),
+                  CONSTRAINT `telefonos_ibfk_1` FOREIGN KEY (`ruc`) REFERENCES `provedores` (`RUC_Provedores`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Base de datos: 'inventario'
+    -->
+    <database name="inventario">
+        <!-- Tabla clientes -->
+        <table name="clientes">
+            <column name="cedula">0401828710</column>
+            <column name="nombre">Karol Daniela</column>
+            <column name="apellido">Rosero Figueroa</column>
+            <column name="direccion">Rumiñagui y Vicente Rocafuerte</column>
+            <column name="ciudad">Tulcan</column>
+        </table>
+        <table name="clientes">
+            <column name="cedula">0401877345</column>
+            <column name="nombre">Sandra Patricia</column>
+            <column name="apellido">Arcos Criollo</column>
+            <column name="direccion">Manuel Maria Carrera</column>
+            <column name="ciudad">San Gabrie</column>
+        </table>
+        <table name="clientes">
+            <column name="cedula">0401964515</column>
+            <column name="nombre">Jonathan Fernando</column>
+            <column name="apellido">Narváez Urresta</column>
+            <column name="direccion">Esmeraldas y salinas</column>
+            <column name="ciudad">El Angel</column>
+        </table>
+        <!-- Tabla compras -->
+        <!-- Tabla correos -->
+        <!-- Tabla factura_cabezera -->
+        <!-- Tabla factura_detalle -->
+        <!-- Tabla kardex -->
+        <!-- Tabla productos -->
+        <table name="productos">
+            <column name="Id_producto">1</column>
+            <column name="descripcion">faro esq mazda</column>
+            <column name="marca">mazda</column>
+            <column name="costo">9</column>
+            <column name="ruc_provedores">1803213519001</column>
+        </table>
+        <!-- Tabla provedores -->
+        <table name="provedores">
+            <column name="ruc_provedores">1717480378001</column>
+            <column name="nombres">RODRIGUEZ CUDRIZ</column>
+            <column name="ciudad">QUITO</column>
+            <column name="telefono">0984004176</column>
+            <column name="direccion">AV.MANUEL CORDOVA GALARZA OE4-184 Y PASAJE SHYRIS</column>
+        </table>
+        <table name="provedores">
+            <column name="ruc_provedores">1803213519001</column>
+            <column name="nombres">FREISA CAR</column>
+            <column name="ciudad">QUITO</column>
+            <column name="telefono">0998111240</column>
+            <column name="direccion">De las hortencias E9-41 y Av, 6 de Diciembre</column>
+        </table>
+        <!-- Tabla telefonos -->
+    </database>
+</pma_xml_export>

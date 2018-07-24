@@ -1,0 +1,43 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Table">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ruc_provedores" type="xs:string" minOccurs="0" />
+                <xs:element name="nombres" type="xs:string" minOccurs="0" />
+                <xs:element name="telefono" type="xs:string" minOccurs="0" />
+                <xs:element name="ciudad" type="xs:string" minOccurs="0" />
+                <xs:element name="direccion" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <Table>
+    <ruc_provedores>0990271712001</ruc_provedores>
+    <nombres>INDUSTRIA DACAR CIA. LTDA.</nombres>
+    <telefono>0998432450</telefono>
+    <ciudad>QUAYAQUIL</ciudad>
+    <direccion>cALLE pICHINCHA SEGUNDA TRASNVERSAR</direccion>
+  </Table>
+  <Table>
+    <ruc_provedores>1180321351900</ruc_provedores>
+    <nombres>FREISA CAR</nombres>
+    <telefono>0998111240</telefono>
+    <ciudad>QUITO</ciudad>
+    <direccion>DE LAS HORTENCIAS E9-41 Y A.V 6 DE DICIEMBRE</direccion>
+  </Table>
+  <Table>
+    <ruc_provedores>1717480378001</ruc_provedores>
+    <nombres>RODRIGUEZ CUDRIZ JEAN MICHAEL</nombres>
+    <telefono>0984004176</telefono>
+    <ciudad>QUITO</ciudad>
+    <direccion>AV.MANUEL CORDOVA GALARZA OE4-184 Y PASAJE SHYRIS</direccion>
+  </Table>
+</NewDataSet>
